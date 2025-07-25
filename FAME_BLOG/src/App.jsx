@@ -10,7 +10,6 @@ function App() {
   const [loader, setLoader] = useState(true)
   const dispatch = useDispatch()
   useEffect(() => {
-    console.log(":andar")
     authService.getCurrentUser()
     .then((user) => {
       console.log('user : ',user)

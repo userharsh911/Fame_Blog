@@ -30,8 +30,8 @@ const Signup = () => {
         setLoader(false)
     }
 return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800">
-        <div className="w-full max-w-md p-8 space-y-6 bg-white dark:bg-gray-800 rounded-xl shadow-2xl transform hover:scale-[1.01] transition-all duration-300">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="w-full max-w-md p-8 space-y-6 bg-blue-100 dark:bg-gray-800 rounded-xl shadow-2xl transform hover:scale-[1.01] transition-all duration-300">
             <div className="text-center">
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Sign Up</h1>
             </div>

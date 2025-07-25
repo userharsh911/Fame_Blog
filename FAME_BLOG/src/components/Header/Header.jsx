@@ -35,7 +35,7 @@ const Header = () => {
         document.getElementById('root').classList.toggle('dark');
     }
 return (
-    <header className="bg-gray-300 dark:bg-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
+    <header className="bg-zinc-200 dark:bg-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
         <div className="container mx-auto px-4">
             <div className="flex items-center justify-between h-16">
                 <div className="flex items-center space-x-4">

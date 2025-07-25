@@ -32,6 +32,28 @@ export class AuthService {
         }
     }
 
+    async OtpLogin({email}){
+        try {
+            await this.account.createEmailToken(
+                ID.unique(),
+                email
+            )
+        } catch (error) {
+            
+        }
+    }
+
+    async verifyOtp({userId, otp}) {
+        try {
+            return await this.account.createSession(
+                userId,
+                otp
+            );
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async logout() {
         try {
             return await this.account.deleteSession("current");

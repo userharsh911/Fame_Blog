@@ -13,7 +13,7 @@ function App() {
     console.log(":andar")
     authService.getCurrentUser()
     .then((user) => {
-      console.log(user)
+      console.log('user : ',user)
       if(user) {
         dispatch(login(user));
       }
@@ -26,17 +26,23 @@ function App() {
   if(!loader) {
     return (
       <div className="min-h-screen bg-gray-50">
-      <Header />
-      <main className="container mx-auto px-4 py-8 max-w-7xl">
-        <div className="bg-white rounded-lg shadow-md p-6">
-        <Outlet />
-        </div>
-      </main>
-      <Footer/>
-      {/* Other components can be added here */}
+        
+        <Header />
+          <main className="container mx-auto px-4 py-8 max-w-7xl">
+            <div className="bg-white rounded-lg shadow-md p-6">
+            <Outlet />
+            </div>
+          </main>
+        <Footer/>
       </div>
     )
-  }else null
+  }else{
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-blue-500"></div>
+      </div>
+    )
+  }
 }
 
 export default App

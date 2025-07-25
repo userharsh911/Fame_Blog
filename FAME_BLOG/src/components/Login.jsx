@@ -26,7 +26,7 @@ const Login = () => {
                 }else navigate('/login')
             }else navigate('/login')
         } catch (error) {
-            setError(error)
+            setError(error.message || "Login failed, please try again.")
         }
         setLoader(false)
     }

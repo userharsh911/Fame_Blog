@@ -25,7 +25,7 @@ const Signup = () => {
                 }else navigate('/login')
             }else navigate('/signup')
         } catch (error) {
-            setError(error)
+            setError(error.message || "Signup failed, please try again.")
         }
         setLoader(false)
     }

@@ -45,7 +45,7 @@ return (
                                     <li key={item.name}>
                                         <Button
                                             onClick={() => navigate(item.navTo)}
-                                            className="px-4 py-2 text-gray-700 hover:text-blue-600 rounded-md transition duration-300 hover:bg-gray-100"
+                                            className="px-4 py-2 cursor-pointer text-gray-700 hover:text-blue-600 rounded-md transition duration-300 hover:bg-gray-100"
                                         >
                                             {item.name}
                                         </Button>
@@ -53,7 +53,7 @@ return (
                                 )
                         )}
                         {authStatus && (
-                            <LogoutBtn className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-300" />
+                            <LogoutBtn className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-300 cursor-pointer" />
                         )}
                     </ul>
                 </nav>

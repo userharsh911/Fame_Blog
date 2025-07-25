@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import authService from '../services/authService';
 import { login } from '../features/authSlice';
 import { useDispatch } from 'react-redux';
@@ -9,10 +9,12 @@ import Button from './Button';
 const Signup = () => {
     const dispatch = useDispatch()
     const [error, setError] = useState('')
+    const [loader, setLoader] = useState(false)
     const navigate = useNavigate()
     const {register, handleSubmit} = useForm();
     const signup = async (data)=>{
         setError('')
+        setLoader(true)
         try {
             const userData = await authService.createAccount(data);
             if(userData){
@@ -25,10 +27,11 @@ const Signup = () => {
         } catch (error) {
             setError(error)
         }
+        setLoader(false)
     }
 return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 space-y-6">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-100">
+        <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-2xl transform hover:scale-[1.01] transition-all duration-300">
             <div className="text-center">
                 <h1 className="text-3xl font-bold text-gray-900">Sign Up</h1>
             </div>
@@ -68,11 +71,32 @@ return (
                     />
                     <Button
                         type='submit'
-                        className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200'
+                        className={`w-full cursor-pointer py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-700 transform hover:-translate-y-0.5 transition-all duration-200 ${loader ? 'cursor-progress opacity-50' : 'cursor-pointer'}`}
                     >
-                        Sign Up
+                        {loader ? 'Signing up...' : 'Sign Up'}
                     </Button>
                 </form>
+            </div>
+            <div>
+                {
+                loader && (
+                        <div className="flex items-center justify-center mt-4">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                        </div>
+                    )
+                }
+            </div>
+            <div>
+                <p className="text-center text-gray-600">
+                    <label htmlFor="signup" className='cursor-pointer'>Already have an account?</label> {' '}
+                    <Button 
+                        onClick={() => navigate('/login')}
+                        className="text-blue-500 cursor-pointer hover:text-blue-600 transition-colors duration-200"
+                        id="signup"
+                    >
+                        Log In
+                    </Button>
+                </p>
             </div>
         </div>
     </div>

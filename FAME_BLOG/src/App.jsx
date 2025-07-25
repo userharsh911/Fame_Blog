@@ -25,11 +25,11 @@ function App() {
 
   if(!loader) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-150 dark:bg-gray-700">
         
         <Header />
           <main className="container mx-auto px-4 py-8 max-w-7xl">
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className=" bg-gray-200 dark:bg-gray-800 rounded-lg shadow-md p-6">
             <Outlet />
             </div>
           </main>
@@ -38,7 +38,7 @@ function App() {
     )
   }else{
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex items-center justify-center min-h-screen bg-gray-400">
         <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-blue-500"></div>
       </div>
     )

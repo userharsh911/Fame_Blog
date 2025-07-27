@@ -1,7 +1,7 @@
-import { Client, Account, Storage, Databases, ID } from "appwrite";
+import { Client, Account, Storage, Databases, ID, Query } from "appwrite";
 import conf from "../conf/conf.js";
 
-class articleService {
+class ArticleService {
     client = new Client();
     account;
     storage;
@@ -17,7 +17,7 @@ class articleService {
         this.databases = new Databases(this.client);
     }
 
-    async createPost({slug, title, content, feautredImage,status,userid}) {
+    async createPost({slug, title, content, featuredImage,status,userid}) {
         try {
             return await this.databases.createDocument(
                 conf.APPWRITE_DATABASE_ID,
@@ -26,7 +26,7 @@ class articleService {
                 {
                     title,
                     content,
-                    feautredImage,
+                    featuredImage,
                     status,
                     userid
                 }
@@ -37,7 +37,7 @@ class articleService {
         }
     }
 
-    async updatePost(slug,{ title, content, feautredImage, status}) {
+    async updatePost(slug,{ title, content, featuredImage, status}) {
         try {
             return await this.databases.updateDocument(
                 conf.APPWRITE_DATABASE_ID,
@@ -46,7 +46,7 @@ class articleService {
                 {
                     title,
                     content,
-                    feautredImage,
+                    featuredImage,
                     status
                 }
             );
@@ -87,7 +87,8 @@ class articleService {
         try {
             return await this.databases.listDocuments(
                 conf.APPWRITE_DATABASE_ID,
-                conf.APPWRITE_COLLECTION_ID
+                conf.APPWRITE_COLLECTION_ID,
+                [Query.equal('status', 'published')], 
             );
         } catch (error) {
             console.log("Error fetching posts:", error);
@@ -107,6 +108,19 @@ class articleService {
         } catch (error) {
             console.log("Error uploading file:", error);
             throw error;
+        }
+    }
+
+    async deleteFile(file){
+        try {
+            await this.storage.deleteFile(
+                conf.APPWRITE_BUCKET_ID,
+                file
+            )
+            return true
+        } catch (error) {
+            console.log("error while deleting file ",error)
+            return false
         }
     }
 
@@ -130,5 +144,5 @@ class articleService {
     }
 }
 
-const articleService = new articleService();
+const articleService = new ArticleService();
 export default articleService;

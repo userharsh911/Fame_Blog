@@ -5,14 +5,24 @@ import App from './App.jsx'
 import { Provider } from 'react-redux'
 import store from "./store/store.js"
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import Login from './components/login.jsx'
-import Signup from './components/Signup.jsx'
+import Login from './pages/Login.jsx'
+import Signup from './pages/Signup.jsx'
+import AuthLayout from './components/AuthLayout.jsx'
+import AddPost from './pages/AddPost.jsx'
+import PostCardDetails from './pages/PostCardDetails.jsx'
+import Home from './pages/Home.jsx'
+import PostEdit from './pages/PostEdit.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/signup' element={<Signup/>}/>
+      <Route path='' element={<Home/> }/>
+      <Route path='login' element={<AuthLayout Authentication={false}><Login/></AuthLayout>}/>
+      <Route path='signup' element={ <AuthLayout Authentication={false}><Signup/></AuthLayout> }/>
+      <Route path='addpost' element={ <AuthLayout Authentication={true}><AddPost/></AuthLayout> }/>
+      <Route path='post/:postid' element={ <AuthLayout Authentication={true}><PostCardDetails/></AuthLayout> }/>
+      <Route path='post/edit/:postid' element={ <AuthLayout Authentication={true}><PostEdit/></AuthLayout> }/>
+      <Route path='home' element={<Home/> }/>
     </Route>
   )
 )

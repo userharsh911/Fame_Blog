@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import Input from './Input'
 import Button from './Button'
 
-const Login = () => {
+const LoginForm = () => {
     const [error, setError] = useState('');
     const [loader, setLoader] = useState(false);
     const navigate = useNavigate()
@@ -22,7 +22,6 @@ const Login = () => {
                 const currentUser = await authService.getCurrentUser()
                 if(currentUser){
                     dispatch(authLogin(currentUser))
-                    console.log("user logged in successfully ",currentUser)
                     navigate('/')
                 }else navigate('/login')
             }else navigate('/login')
@@ -91,4 +90,4 @@ return (
 )
 }
 
-export default Login
+export default LoginForm

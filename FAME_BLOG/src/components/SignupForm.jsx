@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Input from './Input';
 import Button from './Button';
-const Signup = () => {
+const SignupForm = () => {
     const dispatch = useDispatch()
     const [error, setError] = useState('')
     const [loader, setLoader] = useState(false)
@@ -103,4 +103,4 @@ return (
 )
 }
 
-export default Signup
+export default SignupForm

@@ -10,7 +10,7 @@ const Header = () => {
     const navItems = [
         {
             name:"Home",
-            navTo:'/',
+            navTo:'/home',
             active :true
         },
         {
@@ -25,7 +25,7 @@ const Header = () => {
         },
         {
             name :"Add Post",
-            navTo:"/add_post",
+            navTo:"/addpost",
             active : authStatus
         },
     ]
@@ -44,7 +44,7 @@ return (
                         </h1>
                         <button
                             onClick={darkToggle}
-                            className="relative w-14 h-7 rounded-full bg-gray-700 dark:bg-gray-600 flex items-center transition-colors duration-300 focus:outline-none"
+                            className="relative cursor-pointer w-14 h-7 rounded-full bg-gray-700 dark:bg-gray-600 flex items-center transition-colors duration-300 focus:outline-none"
                         >
                             <div
                                 className={`absolute left-1 transform transition-transform duration-300 flex items-center justify-center w-5 h-5 rounded-full bg-white dark:bg-gray-200 ${

@@ -28,6 +28,11 @@ const Header = () => {
             navTo:"/addpost",
             active : authStatus
         },
+        {
+            name :"My Post",
+            navTo:"/mypost",
+            active : authStatus
+        },
     ]
 
     const darkToggle = () => {

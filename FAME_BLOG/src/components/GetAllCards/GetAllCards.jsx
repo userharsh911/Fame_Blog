@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import PostCard from '../PostCard'
 import articleService from '../../services/articles'
-const GetAllCards = () => {
+const GetAllCards = ({query}) => {
     const [cards, setCards] = useState(null)
     useEffect(()=>{
-        articleService.getAllPosts().then(response=>{
-            setCards(response.documents)
-        })
+        if(query){
+            articleService.getAllPosts(query).then(response=>{
+                setCards(response.documents)
+            })
+        }else{
+            articleService.getAllPosts().then(response=>{
+                setCards(response.documents)
+            })
+        }
     },[])
   if(cards){
     return (

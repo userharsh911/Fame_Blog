@@ -83,12 +83,12 @@ class ArticleService {
         }
     }
 
-    async getAllPosts() {
+    async getAllPosts(query=[Query.equal('status', 'published')]) {
         try {
             return await this.databases.listDocuments(
                 conf.APPWRITE_DATABASE_ID,
                 conf.APPWRITE_COLLECTION_ID,
-                [Query.equal('status', 'published')], 
+                query, 
             );
         } catch (error) {
             console.log("Error fetching posts:", error);

@@ -12,6 +12,7 @@ import AddPost from './pages/AddPost.jsx'
 import PostCardDetails from './pages/PostCardDetails.jsx'
 import Home from './pages/Home.jsx'
 import PostEdit from './pages/PostEdit.jsx'
+import MyPost from './pages/MyPost.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path='addpost' element={ <AuthLayout Authentication={true}><AddPost/></AuthLayout> }/>
       <Route path='post/:postid' element={ <AuthLayout Authentication={true}><PostCardDetails/></AuthLayout> }/>
       <Route path='post/edit/:postid' element={ <AuthLayout Authentication={true}><PostEdit/></AuthLayout> }/>
+      <Route path='mypost' element={ <AuthLayout Authentication={true}><MyPost/></AuthLayout> }/>
       <Route path='home' element={<Home/> }/>
     </Route>
   )

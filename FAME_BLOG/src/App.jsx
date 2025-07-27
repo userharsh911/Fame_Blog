@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     authService.getCurrentUser()
     .then((user) => {
-      // console.log('user : ',user)
+      console.log('user : ',user)
       if(user) {
         dispatch(login(user));
       }

@@ -19,9 +19,15 @@ const PostCardDetails = () => {
         })
     },[])
     const deletePost = async (id)=>{
+      const post = await articleService.getAPost(id)
+      if(post){
+        const delFile = await articleService.deleteFile(post.featuredImage)
+        console.log("image deleted succesfully : ",delFile)
+      }
       const delPost = await articleService.deletePost(id)
       if(delPost){
         console.log("post deleted sucessfully ")
+        console.log("deleted post : ",delPost)
         navigate("/home")
       }
     }

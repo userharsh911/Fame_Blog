@@ -6,6 +6,7 @@ const GetAllCards = ({query}) => {
     useEffect(()=>{
         if(query){
             articleService.getAllPosts(query).then(response=>{
+                console.log("my posts : ",response.documents)
                 setCards(response.documents)
             })
         }else{
@@ -17,6 +18,15 @@ const GetAllCards = ({query}) => {
   if(cards){
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-600 py-8 px-4 sm:px-6 lg:px-8">
+            <div>
+                {
+                    cards.length==0 ? (
+                        <div>
+                            <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-4">No Posts Found</h1>
+                        </div>
+                    ) : ''
+                }
+            </div>
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 justify-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {cards.map(card => (

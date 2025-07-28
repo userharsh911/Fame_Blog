@@ -5,6 +5,7 @@ import parse from 'html-react-parser';
 import { useSelector } from 'react-redux';
 import Button from '../components/Button';
 const PostCardDetails = () => {
+    const [loader, setLoader] = useState(false)
     const {postid} = useParams();
     const userData = useSelector(state=> state.user)
     const navigate = useNavigate();
@@ -19,6 +20,8 @@ const PostCardDetails = () => {
         })
     },[])
     const deletePost = async (id)=>{
+      if(loader) return;
+      setLoader(true)
       const post = await articleService.getAPost(id)
       if(post){
         const delFile = await articleService.deleteFile(post.featuredImage)
@@ -30,6 +33,7 @@ const PostCardDetails = () => {
         console.log("deleted post : ",delPost)
         navigate("/home")
       }
+      setLoader(false)
     }
   if(post && file){
     return (
@@ -43,14 +47,20 @@ const PostCardDetails = () => {
               Edit
             </Button>
             <Button
-              className="bg-red-500 hover:bg-red-600 cursor-pointer text-white px-6 py-2 rounded-lg transition-colors duration-200"
+              className={`bg-red-500 ${loader ? 'cursor-progress' : 'cursor-pointer'} hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors duration-200`}
               onClick={() => deletePost(post.$id)}
             >
-              Delete
+              {loader ? 'Deleting...' : 'Delete'}
             </Button>
           </div>
         )}
-        <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+        <div className='max-w-4xl mx-auto'>
+          <div>
+            <h2 className="font-bold text-3xl py-2 mb-4 text-gray-800  dark:text-gray-100 transition-colors duration-200">
+              {post.title}
+            </h2>
+          </div>
+        <div className=" mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
           <div className="relative aspect-video w-full overflow-hidden">
             <img 
               src={file + '&mode=admin'} 
@@ -60,13 +70,12 @@ const PostCardDetails = () => {
             />
           </div>
           <div className="px-8 py-6">
-            <h2 className="font-bold text-3xl mb-4 text-gray-800 dark:text-gray-100 transition-colors duration-200">
-              {post.title}
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
+            
+            <div className="prose prose-lg max-w-none pt-10 text-gray-700 dark:text-gray-300">
               {parse(post.content)}
             </div>
           </div>
+        </div>
         </div>
       </div>
     )

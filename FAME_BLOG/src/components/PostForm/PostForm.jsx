@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import articleService from '../../services/articles'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -8,6 +8,7 @@ import RTE from '../RTE'
 import Select from '../Select'
 const PostForm = (post) => {
   const [slugValue,setSlugValue] = useState('')
+  const [loader, setLoader] = useState(false)
   const navigate = useNavigate();
   const userData = useSelector(state => state.user)
     const {register,handleSubmit,control, getValues, setValue,watch} = useForm({
@@ -20,6 +21,7 @@ const PostForm = (post) => {
     })
 
     const submitForm = async (data) => {
+      setLoader(true)
       if(post.title){
         const file =  data.featuredImage[0] ? await articleService.uploadFile((data.featuredImage[0])) : null;
         if(file){
@@ -47,6 +49,7 @@ const PostForm = (post) => {
           userPost ? navigate(`/post/${slug}`) : null 
         }
       }
+      setLoader(false)
     }
 
     useEffect(()=>{
@@ -58,7 +61,7 @@ const PostForm = (post) => {
       setSlugValue(
           getValues("title").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")
         )
-    },watch)
+    },[watch])
   return (
     <div className="dark:bg-gray-800">
       <form className="p-4">
@@ -104,10 +107,19 @@ const PostForm = (post) => {
       <button 
         type="submit" 
         onClick={handleSubmit(submitForm)} 
-        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 dark:bg-blue-600 dark:hover:bg-blue-700"
+        className={`bg-blue-500 hover:bg-blue-600 ${loader ? 'cursor-progress' : 'cursor-pointer'} text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 dark:bg-blue-600 dark:hover:bg-blue-700`}
       >
-        {post.title ? 'Update Post' : 'Create Post'}
+        {post.title ? 'Update Post' : 'Create Post'}{loader ? '...':''}
       </button>
+      <div>
+        {
+          loader && (
+            <div className="flex items-center justify-center mt-4">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400"></div>
+            </div>
+          )
+        }
+      </div>
       </form>
     </div>
   )

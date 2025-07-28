@@ -66,8 +66,8 @@ export class AuthService {
         try {
             return await this.account.get();
         } catch (error) {
-            console.log("throw error ",error)
-            throw error;
+            console.log("throw error ",error.message)
+            return false
         }
     }
 }

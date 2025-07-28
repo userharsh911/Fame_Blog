@@ -7,14 +7,16 @@ import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
 function App() {
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(false)
   const dispatch = useDispatch()
   useEffect(() => {
     authService.getCurrentUser()
     .then((user) => {
-      console.log('user : ',user)
+      // console.log('user : ',user)
       if(user) {
         dispatch(login(user));
+      }else{
+        // console.log("user not exist please login or sign up first ")
       }
     })
     .finally(() => {

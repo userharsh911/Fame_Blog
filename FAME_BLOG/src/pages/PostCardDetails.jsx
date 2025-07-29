@@ -37,7 +37,7 @@ const PostCardDetails = () => {
     }
   if(post && file){
     return (
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-8 px-4">
+      <div className="min-h-screen bg-gradient-to-r from-gray-90000 dark:to-gray-900 py-8 px-4">
         {post.userid === userData.$id && (
           <div className="max-w-4xl mx-auto mb-6 flex gap-4">
             <Button
@@ -54,7 +54,7 @@ const PostCardDetails = () => {
             </Button>
           </div>
         )}
-        <div className='max-w-4xl mx-auto'>
+        <div className='max-w-4xl mx-auto '>
           <div>
             <h2 className="font-bold text-3xl py-2 mb-4 text-gray-800  dark:text-gray-100 transition-colors duration-200">
               {post.title}
@@ -69,7 +69,7 @@ const PostCardDetails = () => {
               loading="lazy"
             />
           </div>
-          <div className="px-8 py-6">
+          <div className="px-8 py-6 bg-gradient-to-r dark:from-gray-700 from-5% dark:via-gray-800 via-30% dark:to-gray-950 to-90%">
             
             <div className="prose prose-lg max-w-none pt-10 text-gray-700 dark:text-gray-300">
               {parse(post.content)}

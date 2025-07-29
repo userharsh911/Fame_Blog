@@ -17,7 +17,7 @@ const GetAllCards = ({query}) => {
     },[])
   if(cards){
     return (
-        <div className="min-h-screen bg-gray-100 dark:bg-gray-600 py-8 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen md:bg-gray-100 md:dark:bg-gray-600  py-8 md:px-4 px-0 lg:px-8">
             <div>
                 {
                     cards.length==0 ? (
@@ -28,7 +28,7 @@ const GetAllCards = ({query}) => {
                 }
             </div>
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 justify-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 justify-center gap-8 sm:gap-6  sm:grid-cols-2 lg:grid-cols-3">
                     {cards.map(card => (
                         <PostCard {...card} key={card.$id}/>
                     ))}
@@ -40,7 +40,7 @@ const GetAllCards = ({query}) => {
   else{
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-400">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 dark:border-white border-blue-500"></div>
       </div>
     )
   }

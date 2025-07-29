@@ -3,10 +3,11 @@ import { logout as authLogout } from '../features/authSlice'
 import authService from '../services/authService'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-const LogoutBtn = ({className}) => {
+const LogoutBtn = ({className,toggleSidebar}) => {
   const navigate = useNavigate();
     const dispatch = useDispatch();
     const logout = ()=>{
+      toggleSidebar && toggleSidebar()
         authService.logout()
         .then(()=>{
           console.log("logout successfully ")

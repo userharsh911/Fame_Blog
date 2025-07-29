@@ -53,7 +53,7 @@ return (
         <div className="container mx-auto px-4">
             <div className="flex items-center justify-between h-16">
                 <div className="flex items-center space-x-4">
-                    {user ? <Admin user={user}/> : null}
+                    {user ? <Admin user={user} onClick={()=>navigate(`/admin/${user.$id}`)}/> : null}
                     <button
                         onClick={darkToggle}
                         className="relative cursor-pointer w-14 h-7 rounded-full bg-gray-700 dark:bg-gray-600 flex items-center transition-colors duration-300 focus:outline-none"
@@ -133,9 +133,12 @@ return (
                                 )
                         )}
                         {authStatus && (
-                            <LogoutBtn className="w-full px-4 py-2 bg-red-600 dark:bg-red-700 text-white rounded-md hover:bg-red-700 dark:hover:bg-red-800 transition duration-300 cursor-pointer" />
+                            <LogoutBtn className="w-full px-4 py-2 bg-red-600 dark:bg-red-700 text-white rounded-md hover:bg-red-700 dark:hover:bg-red-800 transition duration-300 cursor-pointer" toggleSidebar={toggleSidebar} />
                         )}
-                        {user ? <Admin user={user}/> : null}
+                        {user ? <Admin user={user} onClick={()=>{
+                                    navigate(`/admin/${user.$id}`);
+                                    toggleSidebar();
+                                }}/> : null}
                     </ul>
                 </div>
             </div>

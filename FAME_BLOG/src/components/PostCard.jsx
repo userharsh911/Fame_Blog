@@ -6,10 +6,10 @@ const PostCard = ({$id, title, featuredImage}) => {
         const authStatus = useSelector(state => state.isAuthenticated)
     const navigate = useNavigate();
 return (
-    <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-800 transition-colors duration-200">
+    <div className="max-w-sm border-2 w-full bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-lg mx-auto overflow-hidden shadow-lg shadow-gray-900 bg-white transition-colors duration-200">
             <div className="relative h-48 overflow-hidden">
                     <img 
-                            src={articleService.getFilePreview(featuredImage)+'&mode=admin'} 
+                            src={articleService.getFilePreview(featuredImage)} 
                             alt={title} 
                             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />

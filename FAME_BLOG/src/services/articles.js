@@ -137,7 +137,7 @@ class ArticleService {
     }
 
     getFilePreview(fileId) {
-        return this.storage.getFilePreview(
+        return this.storage.getFileView(
             conf.APPWRITE_BUCKET_ID,
             fileId
         )
